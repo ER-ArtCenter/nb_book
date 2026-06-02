@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHHER-ART Center · 急診 Nerve Block 即時查詢</title>
+  <meta name="description" content="雙和醫院先進與革新急症技術中心 — 診斷導向止痛策略 Nerve Block 即時查詢系統" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="assets/logo-shh.svg" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <img src="assets/logo-shh.svg" alt="雙和醫院 Logo" class="brand-logo" />
+      <div class="brand-text">
+        <div class="brand-en">SHHER-ART Center</div>
+        <div class="brand-zh">雙和醫院 先進與革新急症技術中心</div>
+        <div class="brand-sub">診斷導向止痛策略 · Nerve Block 即時查詢系統</div>
+      </div>
+    </div>
+    <nav class="tab-nav" id="tabNav">
+      <button class="tab active" data-tab="dx">🔍 診斷查詢</button>
+      <button class="tab" data-tab="drug">💊 藥物與調和劑</button>
+      <button class="tab" data-tab="last">⚠️ LAST 處置</button>
+      <button class="tab" data-tab="derma">🗺️ Dermatome</button>
+      <button class="tab" data-tab="record">📝 病歷 & Checklist</button>
+      <a class="tab tab-download" href="resources/SHHER-ART%20Center%20Nerve%20Block%20Handbook.pdf" target="_blank" rel="noopener" title="下載原始 Handbook PDF">📥 Handbook</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============== 診斷查詢 ============== -->
+    <section class="panel active two-col" data-panel="dx">
+      <aside class="left-col">
+        <div class="search-wrap">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="🔍 輸入診斷（例：clavicle、鎖骨、髖部、ankle...）"
+            autocomplete="off"
+          />
+          <div class="search-hint" id="searchHint">輸入中文或英文即時過濾。共 <span id="dxCount">0</span> 項診斷。</div>
+        </div>
+        <div class="dx-list" id="dxList"><!-- 動態渲染 --></div>
+      </aside>
+
+      <article class="right-col" id="detailPane">
+        <!-- 預設歡迎卡 / 點選後渲染 -->
+      </article>
+    </section>
+
+    <!-- ============== 藥物 ============== -->
+    <section class="panel" data-panel="drug">
+      <div class="content-wrap">
+        <h2>局部麻醉藥比較</h2>
+        <div class="table-scroll">
+          <table class="drug-table" id="drugTable"></table>
+        </div>
+
+        <h2 style="margin-top:2rem">調和劑 Adjuvants</h2>
+        <div class="card-grid" id="adjuvantList"></div>
+
+        <h2 style="margin-top:2rem">Epinephrine 稀釋計算</h2>
+        <div class="calc-box">
+          <p>本院 Bupivacaine 0.5% / Ropivacaine 1% 原瓶為 <b>20 mL</b>。</p>
+          <p>目標稀釋濃度
+            <select id="epiTarget">
+              <option value="200000">1:200,000</option>
+              <option value="400000">1:400,000</option>
+            </select>
+            ，最終總量
+            <select id="epiFinalVol">
+              <option value="20">20 mL（不額外稀釋）</option>
+              <option value="40">40 mL（加生理食鹽水稀釋一倍）</option>
+            </select>
+          </p>
+          <div class="calc-result" id="epiResult"></div>
+        </div>
+
+        <h2 style="margin-top:2rem">計價碼參考</h2>
+        <div class="table-scroll">
+          <table class="billing-table" id="billingTable"></table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== LAST ============== -->
+    <section class="panel" data-panel="last">
+      <div class="content-wrap">
+        <h2>Local Anesthetic Systemic Toxicity (LAST)</h2>
+        <p class="lead">局部麻醉劑進入系統循環後，對中樞神經系統和心血管系統產生毒性反應的臨床狀況。CNS 症狀通常先於 CVS 出現。</p>
+
+        <h3>危險因子</h3>
+        <ul class="bullet">
+          <li>劑量過大</li>
+          <li>注射誤入血管</li>
+          <li>肝功能不良（代謝變慢）</li>
+          <li>年齡極端（老年人、嬰兒）</li>
+          <li>使用高毒性局麻藥（如 bupivacaine）</li>
+          <li>使用於血流豐富部位（如頭頸部）</li>
+        </ul>
+
+        <h3>臨床表現</h3>
+        <div class="card-grid two">
+          <div class="card">
+            <h4>🧠 中樞神經系統 (CNS)</h4>
+            <p><b>早期：</b>口唇麻木、耳鳴、暈眩、視覺模糊、金屬味</p>
+            <p><b>進一步：</b>肌肉顫抖、抽搐、意識喪失</p>
+            <p><b>晚期：</b>呼吸抑制、昏迷</p>
+          </div>
+          <div class="card">
+            <h4>❤️ 心血管系統 (CVS)</h4>
+            <p>心律不整（VPC、VT）、血壓下降、心搏過緩、心搏停止（尤其是 bupivacaine）</p>
+            <p>Early-onset ECG: ↑PR、↑QTc、QRS 異常（bundle branch block）、↑ST</p>
+          </div>
+        </div>
+
+        <h3>處置流程</h3>
+        <ol class="ordered">
+          <li>停用局部麻醉藥物，CALL FOR HELP</li>
+          <li>急診基本 ABC、支持呼吸</li>
+          <li>抽搐 → benzodiazepines (Midazolam)</li>
+          <li>啟動 <b>Lipid Emulsion Therapy</b>（見下方計算機）</li>
+          <li>心律不整：<b>避免</b>使用 lidocaine、procainamide</li>
+          <li>心搏停止：依 ACLS 流程，但 Epinephrine 使用原本 <b>1/10 劑量（0.1 mg/dose）</b></li>
+          <li>治療後監測 12 小時（CV depression 可能延遲復發）</li>
+        </ol>
+
+        <h3>Lipid Emulsion 劑量計算機</h3>
+        <div class="calc-box">
+          <label>病人體重：<input type="number" id="lastWeight" min="1" max="200" value="60" /> kg</label>
+          <div class="calc-result" id="lastResult"></div>
+        </div>
+
+        <h3>預防</h3>
+        <ul class="bullet">
+          <li>使用最小有效劑量</li>
+          <li>分次注射</li>
+          <li>反抽檢查（避免誤入血管）</li>
+          <li>使用超音波導引</li>
+          <li>注射後監測 30–45 分鐘（大劑量更需）</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============== Dermatome ============== -->
+    <section class="panel" data-panel="derma">
+      <div class="content-wrap">
+        <h2>Dermatome / Myotome / Osteotome 速查</h2>
+        <p class="lead">神經分布快速對照，協助判斷阻斷範圍是否覆蓋傷處。</p>
+
+        <h3>頭頸部 Dermatome</h3>
+        <table class="ref-table">
+          <thead><tr><th>神經</th><th>分布範圍</th></tr></thead>
+          <tbody>
+            <tr><td>Trigeminal V1 (ophthalmic)</td><td>前額、上眼瞼、鼻背</td></tr>
+            <tr><td>Trigeminal V2 (maxillary)</td><td>下眼瞼、鼻側、上唇、上頰</td></tr>
+            <tr><td>Trigeminal V3 (mandibular)</td><td>下頷、下唇、太陽穴</td></tr>
+            <tr><td>Greater Occipital (C2)</td><td>後枕部</td></tr>
+            <tr><td>Lesser Occipital (C3)</td><td>耳後</td></tr>
+            <tr><td>Greater Auricular (C3)</td><td>耳廓、下頷角</td></tr>
+            <tr><td>Transverse cervical (C3–C4)</td><td>前頸部</td></tr>
+            <tr><td>Supraclavicular (C4)</td><td>鎖骨上、肩前</td></tr>
+          </tbody>
+        </table>
+
+        <h3>上肢 Osteotome（骨骼神經支配）</h3>
+        <table class="ref-table">
+          <thead><tr><th>神經</th><th>節段</th><th>支配骨骼</th></tr></thead>
+          <tbody>
+            <tr><td>Suprascapular</td><td>C5–C6</td><td>肩胛骨、肩關節</td></tr>
+            <tr><td>Axillary</td><td>C5–C6</td><td>肱骨近端</td></tr>
+            <tr><td>Musculocutaneous</td><td>C5–C6</td><td>肱骨</td></tr>
+            <tr><td>Median</td><td>C5–C6</td><td>橈骨遠端、腕、手</td></tr>
+            <tr><td>Ulnar</td><td>C8–T1</td><td>尺骨、小指側</td></tr>
+            <tr><td>Radial</td><td>C6–T1</td><td>肱骨、橈骨、手背</td></tr>
+          </tbody>
+        </table>
+
+        <h3>下肢 Osteotome</h3>
+        <table class="ref-table">
+          <thead><tr><th>神經</th><th>節段</th><th>支配骨骼</th></tr></thead>
+          <tbody>
+            <tr><td>Ilioinguinal / Iliohypogastric</td><td>L1</td><td>髂骨翼</td></tr>
+            <tr><td>Obturator</td><td>L2–L4</td><td>髖內側</td></tr>
+            <tr><td>Femoral</td><td>L2–L4</td><td>股骨、髕骨、脛骨內側</td></tr>
+            <tr><td>Saphenous</td><td>L2–L4</td><td>內踝</td></tr>
+            <tr><td>Sciatic</td><td>L4–S3</td><td>股骨後、小腿大部</td></tr>
+            <tr><td>Tibial</td><td>L4–S3</td><td>脛骨後、跟骨、足底</td></tr>
+            <tr><td>Common peroneal</td><td>L4–S3</td><td>腓骨、足背</td></tr>
+            <tr><td>Deep peroneal</td><td>L4–S2</td><td>足背、第一蹠骨間</td></tr>
+            <tr><td>Sural</td><td>S1</td><td>外踝、足外緣</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout">
+          📖 完整圖譜請參考 <a href="resources/SHHER-ART%20Center%20Nerve%20Block%20Handbook.pdf" target="_blank" rel="noopener">原始 Handbook PDF</a> 第 2–5 頁。
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== 病歷 & Checklist ============== -->
+    <section class="panel" data-panel="record">
+      <div class="content-wrap">
+        <div class="record-section no-print">
+          <h2>神經阻斷病歷紀錄範本</h2>
+          <p class="lead">可直接編輯下方範本內容，編輯後按「複製範本到剪貼簿」貼到 HIS 病歷。</p>
+          <textarea class="record-template" id="recordTemplate" rows="18"></textarea>
+          <button class="copy-btn" id="copyRecordBtn">📋 複製到剪貼簿</button>
+          <button class="reset-btn">↺ 重設</button>
+        </div>
+
+        <h2 style="margin-top:2rem">急診周邊神經阻斷 Checklist</h2>
+        
+
+        <div class="checklist printable">
+          <h3>一、基本資料</h3>
+          <table class="form-table">
+            <tr><td>病歷號</td><td><input /></td></tr>
+            <tr><td>姓名</td><td><input /></td></tr>
+            <tr><td>性別 / 年齡</td><td><input /></td></tr>
+            <tr><td>日期 / 時間</td><td><input /></td></tr>
+            <tr><td>主治醫師 / 操作者</td><td><input /></td></tr>
+            <tr><td>協助者</td><td><input /></td></tr>
+            <tr><td>疼痛評估 (NRS)</td><td>術前 <input class="small" />/10　術後 <input class="small" />/10</td></tr>
+            <tr><td>Block 類型</td><td class="inline-checks">
+              <label><input type="checkbox" /> 上肢</label>
+              <label><input type="checkbox" /> 下肢</label>
+              <label><input type="checkbox" /> 軀幹</label>
+              <label><input type="checkbox" /> 其他</label>
+            </td></tr>
+            <tr><td>神經阻斷名稱</td><td><input /></td></tr>
+            <tr><td>局部麻醉藥選擇</td><td><input /></td></tr>
+          </table>
+
+          <h3>二、術前準備</h3>
+          <ul class="check-list">
+            <li><label><input type="checkbox" /> 病人身份確認（兩項）</label></li>
+            <li><label><input type="checkbox" /> 知情同意書簽署（急診周邊神經阻斷同意書）</label></li>
+            <li><label><input type="checkbox" /> 評估過敏史（特別是局麻劑）</label></li>
+            <li><label><input type="checkbox" /> 評估凝血功能 / 使用抗凝藥物</label></li>
+            <li><label><input type="checkbox" /> 病人體重以及該局部麻醉藥最大劑量確認</label></li>
+            <li><label><input type="checkbox" /> 局部麻醉藥物是否需要稀釋</label></li>
+            <li><label><input type="checkbox" /> 生命徵象穩定</label></li>
+            <li><label><input type="checkbox" /> 使用鎮靜藥物</label></li>
+            <li><label><input type="checkbox" /> 器械 / 超音波機器準備完成</label></li>
+            <li><label><input type="checkbox" /> 評估執行前 perfusion / sensor / motor / NRS</label></li>
+            <li><label><input type="checkbox" /> 備妥急救設備與藥品</label></li>
+          </ul>
+
+          <h3>三、操作過程</h3>
+          <ul class="check-list">
+            <li><label><input type="checkbox" /> 確認 Block 位置與側別</label></li>
+            <li><label><input type="checkbox" /> 隨時看到針尖</label></li>
+            <li><label><input type="checkbox" /> Supervisor 在場</label></li>
+            <li><label><input type="checkbox" /> 觀察異常感覺 / 疼痛 / LAST 症狀</label></li>
+          </ul>
+
+          <h3>四、術後追蹤</h3>
+          <ul class="check-list">
+            <li><label><input type="checkbox" /> 評估執行後 perfusion / sensor / motor / NRS</label></li>
+            <li><label><input type="checkbox" /> 觀察併發症 / LAST</label></li>
+          </ul>
+
+          <h3>五、備註 / 特殊事項</h3>
+          <textarea rows="4" placeholder="記錄..."></textarea>
+        </div>
+
+        <div class="checklist-toolbar no-print">
+          <button class="print-btn" onclick="window.print()">🖨 列印</button>
+          <button class="copy-btn" id="copyChecklistBtn">📋 複製到剪貼簿</button>
+          <button class="reset-btn">↺ 重設</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>本參考系統由 <b>雙和急診醫學科</b> 整理 · <b>SHHER-ART Center</b> 雙和醫院先進與革新急症技術中心</div>
+    <div>參考資料：POCUS Academy, NYSORA · 本系統僅供臨床參考，實際使用須臨床判斷</div>
+    <div style="margin-top:0.5rem">
+      <a href="resources/SHHER-ART%20Center%20Nerve%20Block%20Handbook.pdf" target="_blank" rel="noopener" class="footer-link">📥 下載原始 Nerve Block Handbook (PDF)</a>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
