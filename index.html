@@ -7,14 +7,14 @@
   <meta name="description" content="雙和醫院先進與革新急症技術中心 — 診斷導向止痛策略 Nerve Block 即時查詢系統" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,600;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="icon" href="assets/logo-shh.svg" />
 </head>
 <body>
   <header class="site-header">
     <div class="brand">
-      <img src="assets/logo-shh.svg" alt="雙和醫院 Logo" class="brand-logo" />
+      <img src="assets/logo-shh-icon.svg" alt="雙和醫院 Logo" class="brand-logo" />
       <div class="brand-text">
         <div class="brand-en">SHHER-ART Center</div>
         <div class="brand-zh">雙和醫院 先進與革新急症技術中心</div>
@@ -27,7 +27,6 @@
       <button class="tab" data-tab="last">⚠️ LAST 處置</button>
       <button class="tab" data-tab="derma">🗺️ Dermatome</button>
       <button class="tab" data-tab="record">📝 病歷 & Checklist</button>
-      <a class="tab tab-download" href="resources/SHHER-ART%20Center%20Nerve%20Block%20Handbook.pdf" target="_blank" rel="noopener" title="下載原始 Handbook PDF">📥 Handbook</a>
     </nav>
   </header>
 
@@ -152,52 +151,80 @@
         <h2>Dermatome / Myotome / Osteotome 速查</h2>
         <p class="lead">神經分布快速對照，協助判斷阻斷範圍是否覆蓋傷處。</p>
 
-        <h3>頭頸部 Dermatome</h3>
-        <table class="ref-table">
-          <thead><tr><th>神經</th><th>分布範圍</th></tr></thead>
-          <tbody>
-            <tr><td>Trigeminal V1 (ophthalmic)</td><td>前額、上眼瞼、鼻背</td></tr>
-            <tr><td>Trigeminal V2 (maxillary)</td><td>下眼瞼、鼻側、上唇、上頰</td></tr>
-            <tr><td>Trigeminal V3 (mandibular)</td><td>下頷、下唇、太陽穴</td></tr>
-            <tr><td>Greater Occipital (C2)</td><td>後枕部</td></tr>
-            <tr><td>Lesser Occipital (C3)</td><td>耳後</td></tr>
-            <tr><td>Greater Auricular (C3)</td><td>耳廓、下頷角</td></tr>
-            <tr><td>Transverse cervical (C3–C4)</td><td>前頸部</td></tr>
-            <tr><td>Supraclavicular (C4)</td><td>鎖骨上、肩前</td></tr>
-          </tbody>
-        </table>
+        <section class="ref-group">
+          <h3>Dermatome（皮節分布）</h3>
+          <figure class="ref-figure">
+            <img src="resources/dermatome-1.png" alt="全身與頭頸部皮節分布圖（前面與側面）" loading="lazy" />
+            <figcaption>頭頸部與全身皮節分布（前面 / 側面）— 來源：NYSORA</figcaption>
+          </figure>
+          <figure class="ref-figure">
+            <img src="resources/dermatome-2.png" alt="全身皮節與周邊神經分布圖（後面）" loading="lazy" />
+            <figcaption>全身皮節與周邊皮神經分布（後面）— 來源：NYSORA</figcaption>
+          </figure>
 
-        <h3>上肢 Osteotome（骨骼神經支配）</h3>
-        <table class="ref-table">
-          <thead><tr><th>神經</th><th>節段</th><th>支配骨骼</th></tr></thead>
-          <tbody>
-            <tr><td>Suprascapular</td><td>C5–C6</td><td>肩胛骨、肩關節</td></tr>
-            <tr><td>Axillary</td><td>C5–C6</td><td>肱骨近端</td></tr>
-            <tr><td>Musculocutaneous</td><td>C5–C6</td><td>肱骨</td></tr>
-            <tr><td>Median</td><td>C5–C6</td><td>橈骨遠端、腕、手</td></tr>
-            <tr><td>Ulnar</td><td>C8–T1</td><td>尺骨、小指側</td></tr>
-            <tr><td>Radial</td><td>C6–T1</td><td>肱骨、橈骨、手背</td></tr>
-          </tbody>
-        </table>
+          <h4 class="ref-subhead">頭頸部 Dermatome</h4>
+          <table class="ref-table">
+            <thead><tr><th>神經</th><th>分布範圍</th></tr></thead>
+            <tbody>
+              <tr><td>Trigeminal V1 (ophthalmic)</td><td>前額、上眼瞼、鼻背</td></tr>
+              <tr><td>Trigeminal V2 (maxillary)</td><td>下眼瞼、鼻側、上唇、上頰</td></tr>
+              <tr><td>Trigeminal V3 (mandibular)</td><td>下頷、下唇、太陽穴</td></tr>
+              <tr><td>Greater Occipital (C2)</td><td>後枕部</td></tr>
+              <tr><td>Lesser Occipital (C3)</td><td>耳後</td></tr>
+              <tr><td>Greater Auricular (C3)</td><td>耳廓、下頷角</td></tr>
+              <tr><td>Transverse cervical (C3–C4)</td><td>前頸部</td></tr>
+              <tr><td>Supraclavicular (C4)</td><td>鎖骨上、肩前</td></tr>
+            </tbody>
+          </table>
+        </section>
 
-        <h3>下肢 Osteotome</h3>
-        <table class="ref-table">
-          <thead><tr><th>神經</th><th>節段</th><th>支配骨骼</th></tr></thead>
-          <tbody>
-            <tr><td>Ilioinguinal / Iliohypogastric</td><td>L1</td><td>髂骨翼</td></tr>
-            <tr><td>Obturator</td><td>L2–L4</td><td>髖內側</td></tr>
-            <tr><td>Femoral</td><td>L2–L4</td><td>股骨、髕骨、脛骨內側</td></tr>
-            <tr><td>Saphenous</td><td>L2–L4</td><td>內踝</td></tr>
-            <tr><td>Sciatic</td><td>L4–S3</td><td>股骨後、小腿大部</td></tr>
-            <tr><td>Tibial</td><td>L4–S3</td><td>脛骨後、跟骨、足底</td></tr>
-            <tr><td>Common peroneal</td><td>L4–S3</td><td>腓骨、足背</td></tr>
-            <tr><td>Deep peroneal</td><td>L4–S2</td><td>足背、第一蹠骨間</td></tr>
-            <tr><td>Sural</td><td>S1</td><td>外踝、足外緣</td></tr>
-          </tbody>
-        </table>
+        <section class="ref-group">
+          <h3>Osteotome（骨骼神經支配）</h3>
+          <figure class="ref-figure">
+            <img src="resources/osteotome.png" alt="上肢與下肢骨骼神經支配圖（前面與後面）" loading="lazy" />
+            <figcaption>上肢與下肢骨骼神經支配（Anterior / Posterior）— 來源：NYSORA</figcaption>
+          </figure>
+
+          <h4 class="ref-subhead">上肢 Osteotome</h4>
+          <table class="ref-table">
+            <thead><tr><th>神經</th><th>節段</th><th>支配骨骼</th></tr></thead>
+            <tbody>
+              <tr><td>Suprascapular</td><td>C5–C6</td><td>肩胛骨、肩關節</td></tr>
+              <tr><td>Axillary</td><td>C5–C6</td><td>肱骨近端</td></tr>
+              <tr><td>Musculocutaneous</td><td>C5–C6</td><td>肱骨</td></tr>
+              <tr><td>Median</td><td>C5–C6</td><td>橈骨遠端、腕、手</td></tr>
+              <tr><td>Ulnar</td><td>C8–T1</td><td>尺骨、小指側</td></tr>
+              <tr><td>Radial</td><td>C6–T1</td><td>肱骨、橈骨、手背</td></tr>
+            </tbody>
+          </table>
+
+          <h4 class="ref-subhead">下肢 Osteotome</h4>
+          <table class="ref-table">
+            <thead><tr><th>神經</th><th>節段</th><th>支配骨骼</th></tr></thead>
+            <tbody>
+              <tr><td>Ilioinguinal / Iliohypogastric</td><td>L1</td><td>髂骨翼</td></tr>
+              <tr><td>Obturator</td><td>L2–L4</td><td>髖內側</td></tr>
+              <tr><td>Femoral</td><td>L2–L4</td><td>股骨、髕骨、脛骨內側</td></tr>
+              <tr><td>Saphenous</td><td>L2–L4</td><td>內踝</td></tr>
+              <tr><td>Sciatic</td><td>L4–S3</td><td>股骨後、小腿大部</td></tr>
+              <tr><td>Tibial</td><td>L4–S3</td><td>脛骨後、跟骨、足底</td></tr>
+              <tr><td>Common peroneal</td><td>L4–S3</td><td>腓骨、足背</td></tr>
+              <tr><td>Deep peroneal</td><td>L4–S2</td><td>足背、第一蹠骨間</td></tr>
+              <tr><td>Sural</td><td>S1</td><td>外踝、足外緣</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="ref-group">
+          <h3>Myotome（肌節 / 動作神經支配）</h3>
+          <figure class="ref-figure">
+            <img src="resources/myotome.png" alt="上肢與下肢肌節動作神經支配圖" loading="lazy" />
+            <figcaption>上肢與下肢肌節（動作）神經支配 — 來源：NYSORA</figcaption>
+          </figure>
+        </section>
 
         <div class="callout">
-          📖 完整圖譜請參考 <a href="resources/SHHER-ART%20Center%20Nerve%20Block%20Handbook.pdf" target="_blank" rel="noopener">原始 Handbook PDF</a> 第 2–5 頁。
+          📖 以上圖譜取自《SHHER-ART Center Nerve Block Handbook》（第 2–5 頁，NYSORA 授權圖示），完整內容請參閱手冊。
         </div>
       </div>
     </section>
@@ -279,10 +306,11 @@
   </main>
 
   <footer class="site-footer">
-    <div>本參考系統由 <b>雙和急診醫學科</b> 整理 · <b>SHHER-ART Center</b> 雙和醫院先進與革新急症技術中心</div>
-    <div>參考資料：POCUS Academy, NYSORA · 本系統僅供臨床參考，實際使用須臨床判斷</div>
-    <div style="margin-top:0.5rem">
-      <a href="resources/SHHER-ART%20Center%20Nerve%20Block%20Handbook.pdf" target="_blank" rel="noopener" class="footer-link">📥 下載原始 Nerve Block Handbook (PDF)</a>
+    <div> <b>SHHER-ART Center</b> · 雙和醫院先進與革新急症技術中心</div>
+    <div class="footer-disclaimer">
+      <b>免責聲明：</b>本系統內容彙整自《SHHER-ART Center Nerve Block Handbook》，
+      參考資料為 POCUS Academy 與 NYSORA。資料僅供臨床參考，實際使用須由具備執行能力的醫師
+      依個別病患情況臨床判斷，並遵循院內標準作業流程。
     </div>
   </footer>
 

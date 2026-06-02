@@ -89,34 +89,20 @@
 
   // ---------- Render: Right detail ----------
   function renderWelcome() {
+    $('#detailPane').classList.add('has-decoration');
     $('#detailPane').innerHTML = `
-      <div class="welcome">
-        <img src="assets/logo-shh.svg" alt="" class="welcome-logo" />
-        <h1>SHHER-ART Center</h1>
-        <div class="sub">雙和醫院 先進與革新急症技術中心 · 急診 Nerve Block 即時查詢系統</div>
-
-        <div class="welcome-grid">
-          <div class="welcome-card"><b>🔍 即時搜尋</b>輸入中文或英文關鍵字，左欄即時過濾。</div>
-          <div class="welcome-card"><b>📋 診斷導向</b>從常見急診外傷快速取得對應神經阻斷建議。</div>
-          <div class="welcome-card"><b>🔗 NYSORA 連結</b>每項建議皆附原始教學資源連結。</div>
-          <div class="welcome-card"><b>⚠️ LAST 安全</b>內建 Lipid Emulsion 劑量計算與處置流程。</div>
-          <div class="welcome-card"><b>💊 藥物資訊</b>本院藥物劑型、最大劑量、Epi 稀釋計算。</div>
-          <div class="welcome-card"><b>📝 病歷範本</b>含可複製病歷與可列印 Checklist。</div>
-          <a class="welcome-card welcome-card-link" href="resources/SHHER-ART%20Center%20Nerve%20Block%20Handbook.pdf" target="_blank" rel="noopener">
-            <b>📥 下載原始手冊</b>SHHER-ART Center Nerve Block Handbook PDF
-          </a>
-        </div>
-
-        <div class="disclaimer">
-          <b>免責聲明：</b>本系統內容彙整自《SHHER-ART Center Nerve Block Handbook》，
-          參考資料為 POCUS Academy 與 NYSORA。資料僅供臨床參考，實際使用須由具備執行能力的醫師
-          依個別病患情況臨床判斷，並遵循院內標準作業流程。
-        </div>
+      <div class="welcome-fundamental">
+        <img src="assets/logo-shh-icon.svg" alt="SHHER-ART Center" class="welcome-logo" />
+        <blockquote class="fundamental-quote">
+          <p class="fq-en">Pain management is a fundamental human right.</p>
+          <p class="fq-zh">疼痛控制乃基本人權</p>
+        </blockquote>
       </div>
     `;
   }
 
   function renderDetail(dx) {
+    $('#detailPane').classList.remove('has-decoration');
     const blocksHtml = dx.blocks.length === 0
       ? ''
       : `<div class="block-list">
